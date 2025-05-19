@@ -23,12 +23,17 @@ public class MainActivity3 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String[] items = {"AISoftware", "AIRobot","AIPhoto","AIGPT","AIGemini"};
+        String[] items = {"AISoftware", "AIRobot", "AIPhoto", "AIGPT","AIGemini"};
 
         AutoCompleteTextView auto = findViewById(R.id.auto1);
         MultiAutoCompleteTextView multi = findViewById(R.id.multi1);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
-        auto.setAdapter(adpter);
+        auto.setAdapter(adapter);
+
+//        여러 개의 자동 완성 기능 사용(컴마 기준)
+        MultiAutoCompleteTextView.CommaTokenizer commaToken = new MultiAutoCompleteTextView.CommaTokenizer();
+        multi.setTokenizer(commaToken);
+        multi.setAdapter(adapter);
     }
 }
